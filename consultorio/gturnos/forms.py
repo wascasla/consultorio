@@ -12,4 +12,17 @@ class OrganizacionForm(forms.ModelForm):
 		'domicilio': TextInput(attrs={'class':'form-control'}),
 		'telefono': TextInput(attrs={'class':'form-control'}),
 		}
+
+
+class TurnoForm(forms.ModelForm):
+	"""docstring for OrganizacionForm"""
+	class Meta:
+		model = Turno
+		fields = ('medico','paciente','organizacion','fecha')
+		widgets = {
+		'medico': TextInput(attrs={'class':'form-control'}),
+		'paciente': TextInput(attrs={'class':'form-control'}),
+		'organizacion': TextInput(attrs={'class':'form-control'}),
+		'fecha': TextInput(attrs={'class':'form-control'}),
+		}
 		

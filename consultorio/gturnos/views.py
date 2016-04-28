@@ -1,4 +1,4 @@
-from django.shortcuts import render,render_to_response,redirect
+from django.shortcuts import render,render_to_response,redirect,get_object_or_404
 from django.views.generic.base import TemplateView
 from .forms import *
 
@@ -10,24 +10,29 @@ def organizacion_new(request):
 		form = OrganizacionForm(request.POST)
 		if form.is_valid():
 			oganizacion = form.save()
-			return redirect('gturnos.views.oganizacion_detail',pk=oganizacion.pk)
+			return redirect('gturnos.views.organizacion_detail',pk=oganizacion.pk)
 	else:		
 		form = OrganizacionForm()
 		return render(request, 'gturnos/organizacion/new.html', {'form':form})
 
 
 def organizacion_edit(request, pk):
-	oganizacion = get_object_or_404(Oganizacion, pk=pk)
+	organizacion = get_object_or_404(Organizacion, pk=pk)
 	if request.method == "POST":
-		form = oganizacionForm(request.POST, instance=oganizacion)
-		if form.is_valid():
-			oganizacion = form.save()
-			return redirect('gturnos.views.oganizacion_detail',pk=oganizacion.pk)
+		form = OrganizacionForm(request.POST, instance=organizacion)
+		if form.is_valid():			
+			organizacion = form.save()
+			return redirect('gturnos.views.organizacion_detail',pk=organizacion.pk)
 	else:		
-		form = OrganizacionForm(instance=oganizacion)
+		form = OrganizacionForm(instance=organizacion)
 		return render(request, 'gturnos/organizacion/edit.html', {'form':form})
 
 
 def organizacion_detail(request, pk):
-	oganizacion = get_object_or_404(Oganizacion, pk=pk)	
-	return render(request, 'gturnos/organizacion/new.html', {'form':form})
+	org = get_object_or_404(Organizacion, pk=pk)	
+	return render(request, 'gturnos/organizacion/detail.html', {'org':org})
+
+
+def organizacion_all(request):
+	orgTodas = Organizacion.objects.all()
+	return render(request, 'gturnos/organizacion/orgList.html', {'orgTodas':orgTodas})

@@ -111,7 +111,4 @@ class Turno(models.Model):
 	organizacion = models.ForeignKey(Organizacion)
 
 	def __str__(self):
-            return self.paciente.nombres
-		
-		
-		
+            return self.paciente.nombres		
