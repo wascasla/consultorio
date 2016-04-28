@@ -7,7 +7,7 @@ def turno_new(request):
 		form = TurnoForm(request.POST)
 		if form.is_valid():
 			turno = form.save()
-			return redirect('gturnos.views.viewTurno.turno_detail',pk=turno.pk)
+			return redirect('gturnos.controller.viewTurno.turno_detail',pk=turno.pk)
 	else:		
 		form = TurnoForm()
 		return render(request, 'gturnos/turno/new.html', {'form':form})
