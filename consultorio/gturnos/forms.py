@@ -23,6 +23,7 @@ class TurnoForm(forms.ModelForm):
 		'medico': TextInput(attrs={'class':'form-control'}),
 		'paciente': TextInput(attrs={'class':'form-control'}),
 		'organizacion': TextInput(attrs={'class':'form-control'}),
-		'fecha': TextInput(attrs={'class':'form-control'}),
+		'fecha': forms.DateInput(attrs={'class':'form-control'}),
 		}
+		#fecha = forms.DateField(widget=forms.SelectDateWidget())
 		

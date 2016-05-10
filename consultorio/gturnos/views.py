@@ -36,3 +36,14 @@ def organizacion_detail(request, pk):
 def organizacion_all(request):
 	orgTodas = Organizacion.objects.all()
 	return render(request, 'gturnos/organizacion/orgList.html', {'orgTodas':orgTodas})
+
+
+def turno_new(request):
+	if request.method == "POST":
+		form = TurnoForm(request.POST)
+		if form.is_valid():
+			turno = form.save()
+			return redirect('gturnos.views.turno_detail',pk=turno.pk)
+	else:		
+		form = TurnoForm()
+		return render(request, 'gturnos/turno/new.html', {'form':form})

@@ -9,4 +9,5 @@ urlpatterns = [
         url(r'^organizacion/(?P<pk>[0-9]+)/$', views.organizacion_detail),
         url(r'^organizacion/all/$', views.organizacion_all, name='organizacion_all'),
         #url(r'^turno/new/$', viewTurno.turno_new, name='turno_new'),
+        url(r'^turno/new/$', views.turno_new, name='turno_new'),
     ]
