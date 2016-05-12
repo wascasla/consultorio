@@ -37,9 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'datetimewidget ',
+    #'datetimewidget',
     'gturnos',
-    #'datetimewidget ',
+    'datetimewidget',
 ]
 
 MIDDLEWARE_CLASSES = [
