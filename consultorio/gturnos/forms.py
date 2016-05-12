@@ -1,6 +1,7 @@
 from django import forms
 from .models import *
 from django.forms import  TextInput
+from datetimewidget.widgets import DateTimeWidget
 
 class OrganizacionForm(forms.ModelForm):
 	"""docstring for OrganizacionForm"""
@@ -18,12 +19,14 @@ class TurnoForm(forms.ModelForm):
 	"""docstring for OrganizacionForm"""
 	class Meta:
 		model = Turno
-		fields = ('medico','paciente','organizacion','fecha')
+		fields = ('fecha','medico','paciente','organizacion')
 		widgets = {
+		'fecha': DateTimeWidget(attrs={'id':"fecha",'class':'form-control'}, bootstrap_version=3),
 		'medico': TextInput(attrs={'class':'form-control'}),
 		'paciente': TextInput(attrs={'class':'form-control'}),
-		'organizacion': TextInput(attrs={'class':'form-control'}),
-		'fecha': forms.DateInput(attrs={'class':'form-control'}),
+		'organizacion': TextInput(attrs={'class':'form-control'})
+		#'fecha': TextInput(attrs={'class':'datetimepicker'}),
+		
 		}
 		#fecha = forms.DateField(widget=forms.SelectDateWidget())
 		
