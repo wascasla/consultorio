@@ -38,6 +38,7 @@ def organizacion_all(request):
 	return render(request, 'gturnos/organizacion/orgList.html', {'orgTodas':orgTodas})
 
 
+<<<<<<< HEAD
 def turno_new(request):
 	if request.method == "POST":
 		form = TurnoForm(request.POST)
@@ -47,3 +48,104 @@ def turno_new(request):
 	else:		
 		form = TurnoForm()
 		return render(request, 'gturnos/turno/new.html', {'form':form})
+=======
+#Para arriba hizo walter tengo que editar 
+
+# MEDICOS
+def medico_new(request):
+	if request.method == "POST":
+		form = MedicoForm(request.POST)
+		if form.is_valid():
+			medico = form.save()			#Aca Guardo
+			return redirect('gturnos.views.medico_detail',pk=medico.pk)
+		else:
+			return redirect('gturnos.views.medico_all')
+	else:		
+		form = MedicoForm()
+		return render(request, 'gturnos/medico/new.html', {'form':form})
+
+def medico_all(request):
+	medTodos = Medico.objects.all()
+	return render(request, 'gturnos/medico/medList.html', {'medTodos':medTodos})
+
+def medico_edit(request, pk):
+	medico = get_object_or_404(Medico, pk=pk)
+	if request.method == "POST":
+		form = MedicoForm(request.POST, instance=medico)
+		if form.is_valid():			
+			medico = form.save()
+			return redirect('gturnos.views.medico_detail',pk=medico.pk)
+	else:		
+		form = MedicoForm(instance=medico)
+		return render(request, 'gturnos/medico/edit.html', {'form':form})
+
+def medico_detail(request, pk):
+	med = get_object_or_404(Medico, pk=pk)	
+	return render(request, 'gturnos/medico/detail.html', {'med':med})
+
+#PACIENTES
+
+def paciente_new(request):
+	if request.method == "POST":
+		form = PacienteForm(request.POST)
+		if form.is_valid():
+			paciente = form.save()			#Aca Guardo
+			return redirect('gturnos.views.paciente_detail',pk=paciente.pk)
+		else:
+			return redirect('gturnos.views.paciente_all')
+	else:		
+		form = PacienteForm()
+		return render(request, 'gturnos/paciente/new.html', {'form':form})
+
+def paciente_all(request):
+	pacTodas = Paciente.objects.all()
+	return render(request, 'gturnos/paciente/pacList.html', {'pacTodas':pacTodas})
+
+def paciente_edit(request, pk):
+	paciente = get_object_or_404(Paciente, pk=pk)
+	if request.method == "POST":
+		form = PacienteForm(request.POST, instance=paciente)
+		if form.is_valid():			
+			paciente = form.save()
+			return redirect('gturnos.views.paciente_detail',pk=paciente.pk)
+	else:		
+		form = PacienteForm(instance=paciente)
+		return render(request, 'gturnos/paciente/edit.html', {'form':form})
+
+def paciente_detail(request, pk):
+	pac = get_object_or_404(Paciente, pk=pk)	
+	return render(request, 'gturnos/paciente/detail.html', {'pac':pac})
+
+#  HISTORIAS CLINICAS
+
+def historia_new(request):
+	if request.method == "POST":
+		form = HistoriaForm(request.POST)
+		if form.is_valid():
+			historia = form.save()			#Aca Guardo
+			return redirect('gturnos.views.historia_detail',pk=historia.pk)
+		else:
+			return redirect('gturnos.views.historia_all')
+	else:		
+		form = HistoriaForm()
+		return render(request, 'gturnos/historia/new.html', {'form':form})
+
+def historia_all(request):
+	hisTodas = Historia_medica.objects.all()
+	return render(request, 'gturnos/historia/hisList.html', {'hisTodas':hisTodas})
+
+def historia_edit(request, pk):
+	historia = get_object_or_404(Historia_medica, pk=pk)
+	if request.method == "POST":
+		form = HistoriaForm(request.POST, instance=historia)
+		if form.is_valid():			
+			historia = form.save()
+			return redirect('gturnos.views.historia_detail',pk=historia.pk)
+	else:		
+		form = HistoriaForm(instance=historia)
+		return render(request, 'gturnos/historia/edit.html', {'form':form})
+
+def historia_detail(request, pk):
+	his = get_object_or_404(Historia_medica, pk=pk)	
+	return render(request, 'gturnos/historia/detail.html', {'his':his})
+>>>>>>> 244c87abda6e772b5ffc7a2be726fa285da99cfd
