@@ -33,6 +33,12 @@ from django.utils import timezone
 # 	fechaHoraFin = models.DateTimeField()
 # 	concluido = models.BooleanField()
 
+class Sexo(models.Model):
+	"""docstring for Sexo"""
+	descripcion = models.CharField(max_length=15)
+	def __str__(self):
+            return self.descripcion		
+
 
 class Persona(models.Model):
 	apellido = models.CharField(max_length=50)
@@ -41,7 +47,7 @@ class Persona(models.Model):
 	domicilio = models.CharField(max_length=200)
 	telefono = models.CharField(max_length=15)
 	dni = models.IntegerField()
-	sexo = models.CharField(max_length=1)
+	sexo = models.ForeignKey(Sexo)
 
 	def __str__(self):
             return self.nombres
@@ -107,7 +113,8 @@ class Turno(models.Model):
 	medico = models.ForeignKey(Medico)
 	paciente = models.ForeignKey(Paciente)
 	usuario = models.ForeignKey(Usuario)
-	fecha = models.DateTimeField('Fecha del Turno')
+	fechaInicio = models.DateTimeField('Fecha Inico del Turno')
+	fechaFin = models.DateTimeField()
 	organizacion = models.ForeignKey(Organizacion)
 
 	def __str__(self):

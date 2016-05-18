@@ -20,13 +20,13 @@ class TurnoForm(forms.ModelForm):
 	class Meta:
 		model = Turno		
 		fields = ('fecha','medico','paciente','organizacion')
-		widgets = {
-		'fecha': DateWidget(attrs={'id':"fecha"}, bootstrap_version=3),
-		'medico': TextInput(attrs={'class':'form-control'}),
-		'paciente': TextInput(attrs={'class':'form-control'}),
-		'organizacion': TextInput(attrs={'class':'form-control'})	
-		#'fecha': TextInput(attrs={'class':'input-group date'})
+		# widgets = {
+		# 'fecha': DateWidget(attrs={'id':"fecha"}, bootstrap_version=3),
+		# 'medico': TextInput(attrs={'class':'form-control'}),
+		# 'paciente': TextInput(attrs={'class':'form-control'}),
+		# 'organizacion': TextInput(attrs={'class':'form-control'})	
+		# #'fecha': TextInput(attrs={'class':'input-group date'})
 		
-		}
+		# }
 		#fecha = forms.DateField(widget=forms.SelectDateWidget())
 		
